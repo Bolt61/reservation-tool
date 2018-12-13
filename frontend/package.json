@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "webpack-dev-server --inline --hot",
     "build": "webpack --mode production"
   },
   "author": "Robin Oester",
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "7.1.0",
+    "prop-types": "^15.6.2",
     "react": "16.6.0",
     "react-bootstrap": "0.32.4",
     "react-day-picker": "7.2.4",

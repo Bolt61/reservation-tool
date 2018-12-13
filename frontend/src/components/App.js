@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import CalendarChooser from "./CalendarChooser";
+import React, { Component } from 'react';
+import CalendarChooser from './CalendarChooser';
 
 class App extends Component {
 

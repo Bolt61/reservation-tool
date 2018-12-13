@@ -1,8 +1,34 @@
-import React, { Component } from "react";
-import DayPicker from "react-day-picker";
-import { Panel, Grid, Row, Col } from "react-bootstrap";
+import React, { Component } from 'react';
+import DayPicker from 'react-day-picker';
+import { Panel, Grid, Row, Col } from 'react-bootstrap';
+import RunwayTable from './RunwayTable';
 
 const FIRST_DAY_OF_WEEK = 1;
+
+const MONTHS = [
+  'Januar',
+  'Februar',
+  'März',
+  'April',
+  'Mai',
+  'Juni',
+  'Juli',
+  'August',
+  'September',
+  'Oktober',
+  'November',
+  'Dezember',
+];
+const WEEKDAYS_LONG = [
+  'Sonntag',
+  'Montag',
+  'Dienstag',
+  'Mittwoch',
+  'Donnerstag',
+  'Freitag',
+  'Samstag',
+];
+const WEEKDAYS_SHORT = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
 
 class CalendarChooser extends Component {
 
@@ -15,13 +41,14 @@ class CalendarChooser extends Component {
 
     if(day >= today) {
       this.setState({
-        selectedDay: selected ? undefined : day,
+        selectedDay: selected ? undefined : day
       });
     }
   };
 
   render() {
     const today = new Date();
+    const { selectedDay } = this.state;
 
     return (
       <div>
@@ -31,25 +58,22 @@ class CalendarChooser extends Component {
               <Panel>
                 <Panel.Body>
                   <DayPicker
-                    selectedDays={this.state.selectedDay}
+                    locale="de"
+                    months={MONTHS}
+                    weekdaysLong={WEEKDAYS_LONG}
+                    weekdaysShort={WEEKDAYS_SHORT}
+                    selectedDays={selectedDay}
                     onDayClick={this.handleSelect}
                     disabledDays={{ daysOfWeek: [0, 6], before: today }}
                     firstDayOfWeek={FIRST_DAY_OF_WEEK}
                   />
                 </Panel.Body>
               </Panel>
-              <Panel bsStyle="primary">
-                <Panel.Heading>
-                  <Panel.Title componentClass="h3">
-                    {
-                      this.state.selectedDay
-                      ? this.state.selectedDay.toLocaleDateString()
-                      : 'No date selected'
-                    }
-                  </Panel.Title>
-                </Panel.Heading>
-                <Panel.Body>Panel content</Panel.Body>
-              </Panel>
+              {
+                selectedDay
+                  ? <RunwayTable selectedDay={selectedDay} />
+                  : undefined
+              }
             </Col>
           </Row>
         </Grid>

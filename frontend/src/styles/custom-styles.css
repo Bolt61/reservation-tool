@@ -8,3 +8,27 @@ h1 {
   padding: auto;
   width: 100%;
 }
+
+tr td, th {
+  text-align: center;
+}
+
+.green {
+  background-color: rgba(0, 168, 38, 0.72);
+}
+
+.red {
+  background-color: #dc001a;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.grey {
+  background-color: gainsboro;
+}
+
+.inner {
+  padding: 5px;
+}

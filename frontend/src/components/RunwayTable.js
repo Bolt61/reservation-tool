@@ -56,7 +56,7 @@ class RunwayTable extends Component {
         </Panel>
         {
           coordinates
-            ? <DetailView coordinates={coordinates} />
+            ? <DetailView coordinates={coordinates} athletesLeft={10} />
             : undefined
         }
       </div>

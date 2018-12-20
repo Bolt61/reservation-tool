@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Panel, Table } from 'react-bootstrap';
 import TableElement from './TableElement';
-import { STYLE_FULL, STYLE_SOME, STYLE_BLOCKED, STYLE_FREE, TABLE_COLUMNS, TABLE_ROWS } from './TableConstants';
+import { STYLE_FULL, STYLE_SOME, STYLE_BLOCKED, STYLE_FREE, TABLE_COLUMNS, TABLE_ROWS } from '../../utils/constants';
 import DetailView from './DetailView';
 
 const PAYLOAD =
@@ -37,7 +37,6 @@ class RunwayTable extends Component {
 
   renderPanel = (selectedDay) => {
     const { coordinates } = this.state;
-    console.log(selectedDay);
     return (
       <div>
         <Panel bsStyle='primary'>

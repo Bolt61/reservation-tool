@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Panel, Button, Modal, FormGroup, FormControl } from 'react-bootstrap';
-import { TABLE_COLUMNS, TABLE_ROWS} from './TableConstants';
+import { TABLE_COLUMNS, TABLE_ROWS} from '../../utils/constants';
 import ReservationView from './ReservationView';
 
 const PAYLOAD = [{groupName: 'SC Adelboden', responsible: 'reto.daepp@gmail.com', amountAthletes: 5},

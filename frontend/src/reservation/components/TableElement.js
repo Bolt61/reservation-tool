@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { STYLE_FULL, STYLE_FREE, STYLE_BLOCKED, STYLE_SOME } from './TableConstants';
+import { STYLE_FULL, STYLE_FREE, STYLE_BLOCKED, STYLE_SOME } from '../../utils/constants';
 
 class TableElement extends Component {
 

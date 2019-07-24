@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, Glyphicon } from 'react-bootstrap';
 import { getPrincipal } from '../user/store/User.Action'
 
 class Header extends Component {
@@ -14,6 +14,7 @@ class Header extends Component {
 
   render() {
     const { principal } = this.props;
+    const navDropdownTitle = <div style={{display: "inline-block"}}><Glyphicon glyph="user" /> Tester</div>;/**{principal.userName}**/
 
     return(
       <Navbar inverse collapseOnSelect>
@@ -25,14 +26,16 @@ class Header extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="/#/admin">
+            <NavItem eventKey={1} href="#admin">
               Admin
             </NavItem>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={2} href="logout">
-              <span className="glyphicon glyphicon-user" aria-hidden="true"/> {principal.userName}
-            </NavItem>
+            <NavDropdown eventKey={3} title={navDropdownTitle} id="header-dropdown">
+              <MenuItem href="#user" eventKey={3.1}>Benutzer</MenuItem>
+              <MenuItem divider/>
+              <MenuItem href="logout" eventKey={3.2}>Logout</MenuItem>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

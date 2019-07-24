@@ -1,14 +1,17 @@
 package ch.paranor.oester.robin.reservationtool;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -20,20 +23,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
   protected void configure(HttpSecurity http) throws Exception {
     http
       .authorizeRequests()
-        .antMatchers(HttpMethod.GET).permitAll()
-//        .antMatchers("/public/**").permitAll()
-//        .anyRequest().authenticated()
+        .antMatchers("/assets/styles/*", "/assets/images/*").permitAll()
+        .anyRequest().authenticated()
         .and()
       .formLogin()
+        .loginPage("/login")
+        .defaultSuccessUrl("/", true)
         .permitAll()
         .and()
       .httpBasic()
         .and()
       .csrf().disable()
       .logout()
-        .logoutSuccessUrl("/login")
+        .logoutSuccessUrl("/login?logout").permitAll()
         .invalidateHttpSession(true)
-        .deleteCookies("JSESSIONID");
+        .deleteCookies("JSESSIONID")
+        .and()
+      .sessionManagement().invalidSessionUrl("/login?expired")
+        .maximumSessions(1).expiredUrl("/login?expired")
+        .sessionRegistry(sessionRegistry());
+  }
+  
+  @Override
+  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    if(!registry.hasMappingForPattern("/assets/**")) {
+      registry.addResourceHandler("/assets/**").addResourceLocations("classpath:/assets/");
+    }
   }
   
   @Override
@@ -44,6 +59,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
     registry.addViewController("/").setViewName("forward:/index.html");
+  }
+  
+  @Bean
+  public SessionRegistry sessionRegistry() {
+    return new SessionRegistryImpl();
   }
   
   @Override

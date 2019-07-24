@@ -36,6 +36,7 @@ class UserTable extends Component {
   fillTable = (userList) => {
     return userList.map((user) => {
       let items = [];
+
       items.push(<td key={user.username}>{user.username}</td>);
       items.push(<td key={user.firstName}>{user.firstName}</td>);
       items.push(<td key={user.lastName}>{user.lastName}</td>);

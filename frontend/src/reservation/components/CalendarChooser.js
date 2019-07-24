@@ -51,11 +51,11 @@ class CalendarChooser extends Component {
     const { boundGetHelloMessage } = this.props;
     boundGetHelloMessage();
   };
-
+/**
   componentDidMount() {
     setInterval(this.hello, 2000);
   }
-
+**/
   render() {
     const today = new Date();
     const { selectedDay } = this.state;

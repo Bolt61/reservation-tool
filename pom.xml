@@ -111,7 +111,6 @@
         <!-- Copy the generated react files to the correct spring folder in order to run as one .jar file -->
         <plugin>
           <artifactId>maven-antrun-plugin</artifactId>
-          <version>1.8</version>
           <executions>
             <execution>
               <phase>generate-resources</phase>

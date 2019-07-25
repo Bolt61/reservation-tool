@@ -1,5 +1,6 @@
 # Don't track content of these folders
 node_modules/
+dist/
 
 
 # Compiled source #
@@ -35,6 +36,7 @@ node_modules/
 .settings
 .springBeans
 .sts4-cache
+.metadata
 
 ### IntelliJ IDEA ###
 .idea
@@ -46,6 +48,5 @@ node_modules/
 /nbproject/private/
 /build/
 /nbbuild/
-/dist/
 /nbdist/
 /.nb-gradle/

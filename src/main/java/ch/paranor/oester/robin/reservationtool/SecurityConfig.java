@@ -8,12 +8,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import ch.paranor.oester.robin.reservationtool.user.PasswordEncoderImpl;
+import ch.paranor.oester.robin.reservationtool.user.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -66,13 +69,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     return new SessionRegistryImpl();
   }
   
+  @Bean
+  public PasswordEncoder customPasswordEncoder() {
+    return new PasswordEncoderImpl();
+  }
+  
+  @Bean
+  public UserDetailsService customUserDetailsService() {
+    return new UserDetailsServiceImpl();
+  }
+  
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    PasswordEncoder encoder = new BCryptPasswordEncoder();
-    auth.inMemoryAuthentication()
-      .passwordEncoder(encoder)
-      .withUser("user")
-      .password(encoder.encode("password"))
-      .roles("USER");
+    auth.userDetailsService(customUserDetailsService()).passwordEncoder(customPasswordEncoder());
   }
 }

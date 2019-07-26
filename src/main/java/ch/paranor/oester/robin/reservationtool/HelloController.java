@@ -9,11 +9,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ch.paranor.oester.robin.reservationtool.reservation.blocker.Blocker;
+import ch.paranor.oester.robin.reservationtool.reservation.blocker.BlockerRepository;
+
 @Controller
 public class HelloController {
   
   @Autowired
   private MailService mailService;
+  
+  @Autowired
+  private BlockerRepository repo;
     
   @GetMapping(value = "/api/hello")
   @ResponseBody
@@ -33,6 +39,12 @@ public class HelloController {
     String userName = authentication == null ? null : authentication.getName();
     PrincipalDto dto = new PrincipalDto(userName);
     return dto;
+  }
+  
+  @GetMapping(value = "/api/test")
+  @ResponseBody
+  public Iterable<Blocker> test() {
+    return repo.findAll();
   }
   
   //TODO insert 'users' endpoint here

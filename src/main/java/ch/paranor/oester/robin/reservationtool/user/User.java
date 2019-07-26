@@ -7,9 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
   @Id
@@ -17,12 +18,15 @@ public class User {
   private Long id;
   
   @Column(nullable = false, unique = true)
+  @Size(max = 50)
   private String username;
   
   @NotBlank
+  @Size(max = 50)
   private String password;
   
   @NotBlank
+  @Size(max = 50)
   private String role;
   
   public Long getId() {

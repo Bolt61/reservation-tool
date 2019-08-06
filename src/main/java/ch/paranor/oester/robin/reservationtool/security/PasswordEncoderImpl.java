@@ -1,4 +1,4 @@
-package ch.paranor.oester.robin.reservationtool.user;
+package ch.paranor.oester.robin.reservationtool.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 

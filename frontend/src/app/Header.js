@@ -14,7 +14,7 @@ class Header extends Component {
 
   render() {
     const { principal } = this.props;
-    const navDropdownTitle = <div style={{display: "inline-block"}}><Glyphicon glyph="user" /> {principal.userName}</div>;
+    const navDropdownTitle = <div style={{display: "inline-block"}}><Glyphicon glyph="user" /> {principal.username}</div>;
 
     return(
       <Navbar inverse collapseOnSelect>

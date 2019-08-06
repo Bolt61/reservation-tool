@@ -1,4 +1,4 @@
-package ch.paranor.oester.robin.reservationtool;
+package ch.paranor.oester.robin.reservationtool.testing;
 
 public class MessageDto {
 

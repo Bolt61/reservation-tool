@@ -1,4 +1,4 @@
-package ch.paranor.oester.robin.reservationtool;
+package ch.paranor.oester.robin.reservationtool.mail;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -11,7 +11,7 @@ public class MailService {
   @Autowired
   private JavaMailSender jms;
   
-  public void sendMail() {
+  public void sendTestMail() {
     SimpleMailMessage message = new SimpleMailMessage();
     
     message.setSubject("Test-Mail");
